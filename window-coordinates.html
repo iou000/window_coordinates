@@ -22,6 +22,14 @@
         .special{
             background-color: tomato;
         }
+
+        .scrollBtn{
+            position: fixed;
+            top : 8px;
+            right : 8px;
+        }
+    
+
     </style>
 
 </head>
@@ -36,6 +44,11 @@
     <div class = "special"></div>
     <div></div>
     <div></div>
+    <aside class="scrollBtn">
+        <button class = "scrollBy100px">Scroll by 100px(y)</button>
+        <button class = "scrollTo100px">Scroll to 100px(y)</button>
+        <button class = "scrollIntoSpecial">Scroll into special</button>
+    </aside>
     
     <script>
         const special = document.querySelector('.special');
@@ -45,6 +58,23 @@
             console.log(`client: ${e.clientX}, ${e.clientY}`);
             console.log(`page: ${e.pageX}, ${e.pageY}`);
         })
+
+        const scrollBy100px = document.querySelector('.scrollBy100px'); 
+        const scrollTo100px = document.querySelector('.scrollTo100px');
+        const scrollIntoSpecial = document.querySelector('.scrollIntoSpecial');
+
+        scrollBy100px.addEventListener('click', () => { //100px씩 아래로 스크롤됨.
+            window.scrollBy({top:100, left:0, behavior:"smooth"});
+        });
+        
+        scrollTo100px.addEventListener('click', () =>{ //100px로 이동
+            window.scrollTo({top:100, left:0, behavior:"smooth"});
+        });
+        scrollIntoSpecial.addEventListener('click', (e) => {
+            special.scrollIntoView({behavior:"smooth"});
+        });
+        
+
     </script>
 </body>
 </html>
